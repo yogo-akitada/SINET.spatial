@@ -297,7 +297,7 @@ head(as.data.frame(ego_Case2_tumor_tp_m_c2minus))
 ##Case3
 
 Case3_tumor <- subset(Case3_tumor_normal,
-                      manual_ident2 == "tp#1m"|
+                      manual_ident2 == "tp#1m_&_#2m"|
                         manual_ident2 =="tp#2m"|
                         manual_ident2 =="tp#1sm"|
                         manual_ident2 =="tp#2sm_&_thrombus"|
@@ -307,7 +307,7 @@ Case3_tumor <- subset(Case3_tumor_normal,
 Idents(Case3_tumor) = "manual_ident2"
 
 
-Case3_tumor_tp_m.markers <- FindMarkers(Case3_tumor, ident.1 = c("tp#1m", "tp#2m"),
+Case3_tumor_tp_m.markers <- FindMarkers(Case3_tumor, ident.1 = c("tp#1m_&_#2m", "tp#2m"),
                                          ident.2 = c("tp#2sm_&_thrombus","tm_tp#2sm_&_perithrombus","tp#1sm","tp#1mp","tl"),
                                          min.pct = 0.0, logfc.threshold = 0.0 ,test.use="MAST")
 

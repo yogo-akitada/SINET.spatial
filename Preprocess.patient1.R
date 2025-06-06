@@ -230,7 +230,7 @@ top10
 rownames(top10)
 [1] "CHGA"   "TTR"    "CHGB"   "PTPRN2" "TPH1"   "FEV"    "NKX2-2" "RAB3B"  "RPH3AL" "PCSK1N"
 
-tumor_genes <- c("TTR","CHGA","CHGB","TPH1","PTPRN2","PCSK1N","RAB3B","FEV","NKX2-2","RPH3AL")
+tumor_genes <- c("TTR","CHGA","CHGB","PTPRN2","TPH1","FEV","NKX2-2","RAB3B","RPH3AL","PCSK1N")
 
 Case1 <- AddModuleScore(
   object =Case1,
@@ -263,6 +263,8 @@ Case1_tumor_normal <- subset(Case1,
 
 
 Case1_tumor_normal <- subset(Case1_tumor_normal, ACTB>0 & B2M>0 &UBC>0)
+save(Case1,file="Case1.RData")
+save(Case1_tumor_normal,file="Case1_tumor_normal.RData")
 
 VlnPlot(Case1_tumor_normal , features = "tumor_genes1", log = FALSE, pt.size=0.1)+ NoLegend()
 
@@ -353,7 +355,7 @@ odGenes <- getOverdispersedGenes(as.matrix(counts),
 genes <- odGenes$ods
 
 
-NET<-c("CHGA",   "TTR" ,   "CHGB" , "PTPRN2" ,"TPH1" ,  "FEV" ,   "NKX2-2", "RAB3B" , "RPH3AL" ,"PCSK1N")
+NET<-rownames(top10)
 NET_overlap_fit<-rownames(counts)%in%NET
 NET_overlap<-rownames(counts)[NET_overlap_fit]
 gene_NET<-c(genes,NET_overlap)%>%unique()
