@@ -84,7 +84,7 @@ ggsave(filename="volcano_Case1_tumor_tp_m.markers_FC0.3pval.svg",width=7, height
 
 
 ## download "c5.all.v2023.2.Hs.symbols.gmt" from https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2023.2.Hs/
-C5all<- read.gmt("c5.all.v2023.2.Hs.symbols.gmt")
+C5all<- read.gmt("data/c5.all.v2023.2.Hs.symbols.gmt")
 
 ego_Case1_tumor_tp_m_c5<- enricher(gene    = rownames(Case1_tumor_tp_m.markers_FC0.3pval),
                pvalueCutoff = 1,
@@ -100,7 +100,7 @@ write_xlsx(as.data.frame(ego_Case1_tumor_tp_m_c5),"ego_Case1_tumor_tp_m_c5.xlsx"
 head(as.data.frame(ego_Case1_tumor_tp_m_c5))
 
 ## download "c2.cp.v2023.2.Hs.symbols.gmt" from https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2023.2.Hs/
-C2all<- read.gmt("c2.cp.v2023.2.Hs.symbols.gmt")
+C2all<- read.gmt("data/c2.cp.v2023.2.Hs.symbols.gmt")
 
 ego_Case1_tumor_tp_m_c2<- enricher(gene    = rownames(Case1_tumor_tp_m.markers_FC0.3pval),
                pvalueCutoff = 1,

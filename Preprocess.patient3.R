@@ -14,7 +14,7 @@ library(hdf5r)
 
 ## Place the file 'filtered_feature_bc_matrix.h5' and the image folder 'spatial' into the directory named '376A1'
 Area5 <-Load10X_Spatial(
-  "356A1",
+  "data/356A1",
   filename = "filtered_feature_bc_matrix.h5",
   assay = "Spatial",filter.matrix = TRUE
 )
@@ -27,7 +27,7 @@ Area5@meta.data$Area <- "Area5"
 table(Area5$Area)
 
 Area6 <-Load10X_Spatial(
-  "356B1",
+  "data/356B1",
   filename = "filtered_feature_bc_matrix.h5",
   assay = "Spatial",filter.matrix = TRUE
 )
