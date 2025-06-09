@@ -417,14 +417,6 @@ dfdeconProp2<-
   dplyr::group_by(manual_ident3) 
 
 
-summarize(tumor1 = mean(tumor1),
-          tumor2 = mean(tumor2),
-          tumor3 = mean(tumor3),
-          m_superficial_crypt = mean(m_superficial_crypt),
-          m_base = mean(m_base),
-          stroma = mean(stroma),
-          smooth_muscle = mean(smooth_muscle))
-
 dfdeconProp2
 
 library(reshape2)
