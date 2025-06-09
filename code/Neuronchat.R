@@ -170,39 +170,48 @@ save(Case4_neuronLR,file="Case4_neuronLR.RData")
 
 
 
-
 Case1_neuronLR_tp_mucosal_from_tumor <-
   Case1_neuronLR %>%
   filter(targets == "tp_mucosal")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
+
 
 Case2_neuronLR_tp_mucosal_from_tumor <-
   Case2_neuronLR %>%
   filter(targets == "tp_mucosal")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
+
 
 Case3_neuronLR_tp_mucosal_from_tumor <-
   Case3_neuronLR %>%
   filter(targets == "tp_mucosal")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
+
 
 Case4_neuronLR_tp_mucosal_from_tumor <-
   Case4_neuronLR %>%
   filter(targets == "tp_mucosal")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 
-sharedneuron_tp_mucosal_from_tumor<-
-  Reduce(intersect, list(Case1_neuronLR_tp_mucosal_from_tumor$name,
-                         Case2_neuronLR_tp_mucosal_from_tumor$name,
-                         Case3_neuronLR_tp_mucosal_from_tumor$name,
-                         Case4_neuronLR_tp_mucosal_from_tumor$name))
-character(0)
+
 
 neuronLR_tp_mucosal_from_tumor <-rbind(Case1_neuronLR_tp_mucosal_from_tumor,
-                               Case2_neuronLR_tp_mucosal_from_tumor,
-                               Case3_neuronLR_tp_mucosal_from_tumor,
-                               Case4_neuronLR_tp_mucosal_from_tumor)
+                                       Case2_neuronLR_tp_mucosal_from_tumor,
+                                       Case3_neuronLR_tp_mucosal_from_tumor,
+                                       Case4_neuronLR_tp_mucosal_from_tumor)
 
 
 neuronLR_tp_mucosal_from_tumor_sum <- data.frame(
@@ -214,38 +223,40 @@ neuronLR_tp_mucosal_from_tumor_sum <- data.frame(
                sum)) %>%
   arrange(desc(sum)) 
 
-write.csv(neuronLR_tp_mucosal_from_tumor_sum,"neuronLR_tp_mucosal_from_tumor_sum.csv")
+write.csv(neuronLR_tp_mucosal_from_tumor_sum,"neuronLR_tp_mucosal_from_tumor_sum_.csv")
 
 
 
 Case1_neuronLR_tm_from_tumor <-
   Case1_neuronLR %>%
   filter(targets == "tm")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
+
 
 Case2_neuronLR_tm_from_tumor <-
   Case2_neuronLR %>%
   filter(targets == "tm")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 Case3_neuronLR_tm_from_tumor <-
   Case3_neuronLR %>%
   filter(targets == "tm")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 
-
-
-sharedneuron_tm_from_tumor<-
-  Reduce(intersect, list(Case1_neuronLR_tm_from_tumor$name,
-                         Case2_neuronLR_tm_from_tumor$name,
-                         Case3_neuronLR_tm_from_tumor$name))
-
-[1] "GJB1_GJB1"   "NRXN1_NLGN2" "NRXN2_NLGN2" "NRXN3_NLGN2"
 
 neuronLR_tm_from_tumor <-rbind(Case1_neuronLR_tm_from_tumor,
-                                Case2_neuronLR_tm_from_tumor,
-                                Case3_neuronLR_tm_from_tumor)
+                               Case2_neuronLR_tm_from_tumor,
+                               Case3_neuronLR_tm_from_tumor)
 
 
 neuronLR_tm_from_tumor_sum <- data.frame(
@@ -269,25 +280,24 @@ write.csv(neuronLR_tm_from_tumor_sum,"neuronLR_tm_from_tumor_sum.csv")
 Case3_neuronLR_tl_from_tumor <-
   Case3_neuronLR %>%
   filter(targets == "tl")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 Case4_neuronLR_tl_from_tumor <-
   Case4_neuronLR %>%
   filter(targets == "tl")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
-
-sharedneuron_tl_from_tumor<-
-  Reduce(intersect, list(
-                         Case3_neuronLR_tl_from_tumor$name,
-                         Case4_neuronLR_tl_from_tumor$name))
-character(0)
-[1] "5HT_HTR1D"   "GJB1_GJB1"   "GJD2_GJD2"   "NRXN1_NLGN2" "NRXN2_NLGN2" "NRXN3_NLGN2"
 
 
 neuronLR_tl_from_tumor <-rbind(
-                               Case3_neuronLR_tl_from_tumor,
-                               Case4_neuronLR_tl_from_tumor)
+  Case3_neuronLR_tl_from_tumor,
+  Case4_neuronLR_tl_from_tumor)
 
 
 neuronLR_tl_from_tumor_sum <- data.frame(
@@ -310,51 +320,57 @@ write.csv(neuronLR_tl_from_tumor_sum,"neuronLR_tl_from_tumor_sum.csv")
 
 
 
-Case1_neuronLR_tp_deep_from_tumor <-
+Case1_neuronLR_tp_other_from_tumor <-
   Case1_neuronLR %>%
-  filter(targets == "tp_deep")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(targets == "tp_other")%>%
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
-Case2_neuronLR_tp_deep_from_tumor <-
+Case2_neuronLR_tp_other_from_tumor <-
   Case2_neuronLR %>%
-  filter(targets == "tp_deep")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(targets == "tp_other")%>%
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
-Case3_neuronLR_tp_deep_from_tumor <-
+Case3_neuronLR_tp_other_from_tumor <-
   Case3_neuronLR %>%
-  filter(targets == "tp_deep")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(targets == "tp_other")%>%
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
-Case4_neuronLR_tp_deep_from_tumor <-
+Case4_neuronLR_tp_other_from_tumor <-
   Case4_neuronLR %>%
-  filter(targets == "tp_deep")%>%
-  filter(sources %in% c("tp_mucosal","tm","tl","tp_deep"))
+  filter(targets == "tp_other")%>%
+  filter(sources %in% c("tp_mucosal","tm","tl","tp_other"))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 
-sharedneuron_tp_deep_from_tumor<-
-  Reduce(intersect, list(Case1_neuronLR_tp_deep_from_tumor$name,
-                         Case2_neuronLR_tp_deep_from_tumor$name,
-                         Case3_neuronLR_tp_deep_from_tumor$name,
-                         Case4_neuronLR_tp_deep_from_tumor$name))
-
-character(0)
-
-neuronLR_tp_deep_from_tumor <-rbind(Case1_neuronLR_tp_deep_from_tumor,
-                                       Case2_neuronLR_tp_deep_from_tumor,
-                                       Case3_neuronLR_tp_deep_from_tumor,
-                                       Case4_neuronLR_tp_deep_from_tumor)
 
 
-neuronLR_tp_deep_from_tumor_sum <- data.frame(
-  LR = names(tapply(neuronLR_tp_deep_from_tumor$contribution,
-                    neuronLR_tp_deep_from_tumor$name,
+neuronLR_tp_other_from_tumor <-rbind(Case1_neuronLR_tp_other_from_tumor,
+                                     Case2_neuronLR_tp_other_from_tumor,
+                                     Case3_neuronLR_tp_other_from_tumor,
+                                     Case4_neuronLR_tp_other_from_tumor)
+
+
+neuronLR_tp_other_from_tumor_sum <- data.frame(
+  LR = names(tapply(neuronLR_tp_other_from_tumor$contribution,
+                    neuronLR_tp_other_from_tumor$name,
                     sum)),
-  sum = tapply(neuronLR_tp_deep_from_tumor$contribution,
-               neuronLR_tp_deep_from_tumor$name,
+  sum = tapply(neuronLR_tp_other_from_tumor$contribution,
+               neuronLR_tp_other_from_tumor$name,
                sum)) %>%
   arrange(desc(sum)) 
 
-write.csv(neuronLR_tp_deep_from_tumor_sum,"neuronLR_tp_deep_from_tumor_sum.csv")
+write.csv(neuronLR_tp_other_from_tumor_sum,"neuronLR_tp_other_from_tumor_sum.csv")
 
 
 
@@ -365,35 +381,41 @@ write.csv(neuronLR_tp_deep_from_tumor_sum,"neuronLR_tp_deep_from_tumor_sum.csv")
 Case1_neuronLR_tp_mucosal_from_nontumor <-
   Case1_neuronLR %>%
   filter(targets == "tp_mucosal")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 Case2_neuronLR_tp_mucosal_from_nontumor <-
   Case2_neuronLR %>%
   filter(targets == "tp_mucosal")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 Case3_neuronLR_tp_mucosal_from_nontumor <-
   Case3_neuronLR %>%
   filter(targets == "tp_mucosal")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 Case4_neuronLR_tp_mucosal_from_nontumor <-
   Case4_neuronLR %>%
   filter(targets == "tp_mucosal")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 
-sharedneuron_tp_mucosal_from_nontumor<-
-  Reduce(intersect, list(Case1_neuronLR_tp_mucosal_from_nontumor$name,
-                         Case2_neuronLR_tp_mucosal_from_nontumor$name,
-                         Case3_neuronLR_tp_mucosal_from_nontumor$name,
-                         Case4_neuronLR_tp_mucosal_from_nontumor$name))
-character(0)
 
 neuronLR_tp_mucosal_from_nontumor <-rbind(Case1_neuronLR_tp_mucosal_from_nontumor,
-                                       Case2_neuronLR_tp_mucosal_from_nontumor,
-                                       Case3_neuronLR_tp_mucosal_from_nontumor,
-                                       Case4_neuronLR_tp_mucosal_from_nontumor)
+                                          Case2_neuronLR_tp_mucosal_from_nontumor,
+                                          Case3_neuronLR_tp_mucosal_from_nontumor,
+                                          Case4_neuronLR_tp_mucosal_from_nontumor)
 
 
 neuronLR_tp_mucosal_from_nontumor_sum <- data.frame(
@@ -411,31 +433,32 @@ write.csv(neuronLR_tp_mucosal_from_nontumor_sum,"neuronLR_tp_mucosal_from_nontum
 Case1_neuronLR_tm_from_nontumor <-
   Case1_neuronLR %>%
   filter(targets == "tm")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 Case2_neuronLR_tm_from_nontumor <-
   Case2_neuronLR %>%
   filter(targets == "tm")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 Case3_neuronLR_tm_from_nontumor <-
   Case3_neuronLR %>%
   filter(targets == "tm")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 
-
-
-sharedneuron_tm_from_nontumor<-
-  Reduce(intersect, list(Case1_neuronLR_tm_from_nontumor$name,
-                         Case2_neuronLR_tm_from_nontumor$name,
-                         Case3_neuronLR_tm_from_nontumor$name))
-
-[1] "GJB1_GJB1"   "NRXN1_NLGN2" "NRXN3_NLGN2"
 
 neuronLR_tm_from_nontumor <-rbind(Case1_neuronLR_tm_from_nontumor,
-                               Case2_neuronLR_tm_from_nontumor,
-                               Case3_neuronLR_tm_from_nontumor)
+                                  Case2_neuronLR_tm_from_nontumor,
+                                  Case3_neuronLR_tm_from_nontumor)
 
 
 neuronLR_tm_from_nontumor_sum <- data.frame(
@@ -459,20 +482,19 @@ write.csv(neuronLR_tm_from_nontumor_sum,"neuronLR_tm_from_nontumor_sum.csv")
 Case3_neuronLR_tl_from_nontumor <-
   Case3_neuronLR %>%
   filter(targets == "tl")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 Case4_neuronLR_tl_from_nontumor <-
   Case4_neuronLR %>%
   filter(targets == "tl")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
-
-sharedneuron_tl_from_nontumor<-
-  Reduce(intersect, list(
-    Case3_neuronLR_tl_from_nontumor$name,
-    Case4_neuronLR_tl_from_nontumor$name))
-character(0)
-[1] "GJB1_GJB1"   "NRXN1_NLGN2" "NRXN2_NLGN2" "NRXN3_NLGN2"
 
 
 neuronLR_tl_from_nontumor <-rbind(
@@ -500,50 +522,54 @@ write.csv(neuronLR_tl_from_nontumor_sum,"neuronLR_tl_from_nontumor_sum.csv")
 
 
 
-Case1_neuronLR_tp_deep_from_nontumor <-
+Case1_neuronLR_tp_other_from_nontumor <-
   Case1_neuronLR %>%
-  filter(targets == "tp_deep")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(targets == "tp_other")%>%
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
-Case2_neuronLR_tp_deep_from_nontumor <-
+Case2_neuronLR_tp_other_from_nontumor <-
   Case2_neuronLR %>%
-  filter(targets == "tp_deep")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(targets == "tp_other")%>%
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
-Case3_neuronLR_tp_deep_from_nontumor <-
+Case3_neuronLR_tp_other_from_nontumor <-
   Case3_neuronLR %>%
-  filter(targets == "tp_deep")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(targets == "tp_other")%>%
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
-Case4_neuronLR_tp_deep_from_nontumor <-
+Case4_neuronLR_tp_other_from_nontumor <-
   Case4_neuronLR %>%
-  filter(targets == "tp_deep")%>%
-  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_deep")))
+  filter(targets == "tp_other")%>%
+  filter(!(sources %in% c("tp_mucosal","tm","tl","tp_other")))%>%
+  mutate(contribution2 = contribution/sum(contribution))%>%
+  group_by(name) %>%
+  summarise(contribution = sum(contribution2, na.rm = TRUE))
 
 
-sharedneuron_tp_deep_from_nontumor<-
-  Reduce(intersect, list(Case1_neuronLR_tp_deep_from_nontumor$name,
-                         Case2_neuronLR_tp_deep_from_nontumor$name,
-                         Case3_neuronLR_tp_deep_from_nontumor$name,
-                         Case4_neuronLR_tp_deep_from_nontumor$name))
 
-character(0)
+neuronLR_tp_other_from_nontumor <-rbind(Case1_neuronLR_tp_other_from_nontumor,
+                                        Case2_neuronLR_tp_other_from_nontumor,
+                                        Case3_neuronLR_tp_other_from_nontumor,
+                                        Case4_neuronLR_tp_other_from_nontumor)
 
 
-neuronLR_tp_deep_from_nontumor <-rbind(Case1_neuronLR_tp_deep_from_nontumor,
-                                          Case2_neuronLR_tp_deep_from_nontumor,
-                                          Case3_neuronLR_tp_deep_from_nontumor,
-                                          Case4_neuronLR_tp_deep_from_nontumor)
-
-
-neuronLR_tp_deep_from_nontumor_sum <- data.frame(
-  LR = names(tapply(neuronLR_tp_deep_from_nontumor$contribution,
-                    neuronLR_tp_deep_from_nontumor$name,
+neuronLR_tp_other_from_nontumor_sum <- data.frame(
+  LR = names(tapply(neuronLR_tp_other_from_nontumor$contribution,
+                    neuronLR_tp_other_from_nontumor$name,
                     sum)),
-  sum = tapply(neuronLR_tp_deep_from_nontumor$contribution,
-               neuronLR_tp_deep_from_nontumor$name,
+  sum = tapply(neuronLR_tp_other_from_nontumor$contribution,
+               neuronLR_tp_other_from_nontumor$name,
                sum)) %>%
   arrange(desc(sum)) 
 
-write.csv(neuronLR_tp_deep_from_nontumor_sum,"neuronLR_tp_deep_from_nontumor_sum.csv")
+write.csv(neuronLR_tp_other_from_nontumor_sum,"neuronLR_tp_other_from_nontumor_sum.csv")
 
