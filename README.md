@@ -26,7 +26,7 @@ CellChat
 Neuronchat  
 
 ## Data availability:
-The data is available through the NCBI Gene Expression Omnibus (GEO) (accession, GSE).
+The data is available through the NCBI Gene Expression Omnibus (GEO) (accession, GSE301265).
 
 ## Key data visualization tools:
 ggplot2  
