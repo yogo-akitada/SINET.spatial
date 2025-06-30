@@ -107,7 +107,8 @@ FGFR3_expr <- logCPM["FGFR3", ]
 pheno$FGFR3_expr <- FGFR3_expr[rownames(pheno)]  
 PDGFRB_expr <- logCPM["PDGFRB", ]
 pheno$PDGFRB_expr <- PDGFRB_expr[rownames(pheno)]  
-
+GDF11_expr <- logCPM["GDF11", ]
+pheno$GDF11_expr <- GDF11_expr[rownames(pheno)]  
 
 
 
@@ -573,3 +574,19 @@ ggplot(pheno_noMM, aes(x = type, y = PLXNA3_expr, fill = type)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         legend.position = "none")
+
+
+ggplot(pheno_noMM, aes(x = type, y = GDF11_expr, fill = type)) +
+  geom_boxplot(outlier.shape = NA, alpha = 0.7) +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  facet_wrap(~ origin) +
+  labs(title = "GDF11",
+       x = "Tumor Type",
+       y = "logCPM (GDF11)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "none")
+
+pheno_noMM %>%
+  group_by(origin) %>%
+  summarise(p_value = kruskal.test(GDF11_expr ~ type)$p.value)

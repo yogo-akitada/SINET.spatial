@@ -17,6 +17,7 @@ eric.nakakura@ucsf.edu
 ## Questions about the codes:
 Akitada Yogo  
 akitada.yogo@ucsf.edu  
+yogoakitada@kuhp.kyoto-u.ac.jp
 
 ## Key analysis tools:
 Seurat  
