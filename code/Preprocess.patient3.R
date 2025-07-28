@@ -163,9 +163,9 @@ manual.ident3 <- c(
   
   "tp_mucosal",
   "tp_mucosal",
-  "tp_other",
+  "tp_deep",
   "tm",
-  "tp_other",
+  "tp_deep",
   "tm",
   "tl")
 
@@ -460,7 +460,7 @@ deconbar_Case3_tumor_normal  <-
                               "mes_collagen",
                               
                               "tp_mucosal",
-                              "tp_other",
+                              "tp_deep",
                               "tm",
                               "tl"))+
   scale_fill_manual(values=c("tomato","violet","violetred2","steelblue2","springgreen4","turquoise1"))+

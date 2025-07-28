@@ -166,9 +166,9 @@ manual.ident3 <- c(
   "mes_nerve",
   
   "tp_mucosal",
-  "tp_other",
-  "tp_other",
-  "tp_other",
+  "tp_deep",
+  "tp_deep",
+  "tp_deep",
   "tm",
   "tm",
   "tm",
@@ -475,7 +475,7 @@ deconbar_Case2_tumor_normal  <-
                               "mes_nerve",
                               
                               "tp_mucosal",
-                              "tp_other",
+                              "tp_deep",
                               "tm"))+
   scale_fill_manual(values=c("tomato","violet","violetred2","sienna2","steelblue2","springgreen4","turquoise1"))+
   theme(axis.text.x=element_text(angle=75, hjust=1,  size = rel(1)),

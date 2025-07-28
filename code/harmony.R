@@ -33,12 +33,14 @@ case.combined <- RunHarmony(case.combined, group.by.vars = "orig.ident")
 case.combined <- RunUMAP(case.combined, reduction = "harmony", dims = 1:30)
 case.combined <- FindNeighbors(case.combined, reduction = "harmony", dims = 1:30) %>% FindClusters()
 
+UMAP_4patients <-
 DimPlot(case.combined, group.by = "orig.ident")
+ggsave(filename="UMAP_4patients.svg",width=7, height=5,plot=UMAP_4patients)
 
 
 Idents(case.combined) <-"manual_ident3"
           
-UMAP_4patients <-
+UMAP_4patients_4subtype <-
   DimPlot(case.combined, 
           cells.highlight = list(
             mucosal = WhichCells(case.combined,  idents = "tp_mucosal"),
@@ -47,7 +49,5 @@ UMAP_4patients <-
             lymphatic = WhichCells(case.combined,  idents = "tl")),
             cols.highlight = c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3" ), cols= "grey"
           )
-UMAP_4patients
-ggsave(filename="UMAP_4patients.svg",width=7, height=5,plot=UMAP_4patients)
-
-
+UMAP_4patients_4subtype
+ggsave(filename="UMAP_4patients_4subtype.svg",width=7, height=5,plot=UMAP_4patients_4subtype)
