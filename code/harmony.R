@@ -1,13 +1,7 @@
 install.packages("harmony")
 library(harmony)
 
-case.combined_tumor_normal@project.name <- "Patient1"
-Case2_tumor_normal@project.name <- "Patient2"
-Case3_tumor_normal@project.name <- "Patient3"
-Case4_tumor_normal@project.name <- "Patient4"
-
-
-case.combined <- merge(case.combined_tumor_normal, y = c(Case2_tumor_normal,Case3_tumor_normal,Case4_tumor_normal), add.cell.ids = c("Patient1", "Patient2","Patient3","Patient4"))
+case.combined <- merge(Case1_tumor_normal, y = c(Case2_tumor_normal,Case3_tumor_normal,Case4_tumor_normal), add.cell.ids = c("Patient1", "Patient2","Patient3","Patient4"))
 head(colnames(case.combined))
 tail(colnames(case.combined))
 table(case.combined$orig.ident)
